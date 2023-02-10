@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Pressable, Modal } from 'react-native';
-import { Form } from './src/components/Form';
+import { Form1 } from './src/components/Form1';
+import { Form2 } from './src/components/Form2';
 
 function App(): JSX.Element {
   const [text, onChangeText] = useState('Text');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const [modalVisibleForm, setModalVisibleForm] = useState(false);
+  const [modalForm, setModalForm] = useState(false);
+  const [modalRegistro, setModalRegistro] = useState(false);
 
-  console.log(modalVisible2)
 
+  const newUser = () => { console.log('Crear usuario') }
 
   return (
     <View style={styles.container}>
@@ -36,11 +38,17 @@ function App(): JSX.Element {
 
       {/* Sección botón2 */}
       <Pressable
-        onPress={() => setModalVisibleForm(true)}
+        onPress={() => setModalForm(true)}
         style={styles.btnStyleRed}>
-        <Text style={styles.btnTxtStyle}>iniciar sesión</Text>
+        <Text style={styles.btnTxtStyle}>Ver modal form1</Text>
       </Pressable>
-      <Form modalVisibleForm={modalVisibleForm}></Form>
+      <Form1 modalForm={modalForm}></Form1>
+
+      <Pressable
+        onPress={() => setModalRegistro(true)} style={styles.btnStyle}>
+        <Text style={styles.btnTxtStyle}>Registrarme</Text>
+      </Pressable>
+      <Form2 modalRegistro={modalRegistro} setModalRegistro= {setModalRegistro}></Form2>
 
       {/* Sección ventana modal */}
       <Modal animationType="slide" visible={modalVisible}>
